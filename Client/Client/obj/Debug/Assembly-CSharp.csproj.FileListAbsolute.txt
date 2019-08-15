@@ -1,0 +1,2 @@
+C:\Users\jump\Desktop\NFC\Client\Client\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\jump\Desktop\NFC\Client\Client\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
