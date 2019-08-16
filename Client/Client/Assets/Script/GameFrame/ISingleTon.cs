@@ -33,5 +33,7 @@ namespace GameFrame
                 return _instance;
             }
         }
+
+        public virtual void Init() { }
     }
 }

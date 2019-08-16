@@ -66,7 +66,7 @@ namespace NetWork
             Array.Copy(m_DataBuffer, 0, realPacket, 0, nPacketSize);
             Array.Copy(m_DataBuffer, nPacketSize, m_DataBuffer, 0, m_DataLen - nPacketSize);
             m_DataLen = m_DataLen - nPacketSize;
-            NetworkManager.RecvC2C(this, realPacket);
+            NetworkManager.RecvS2C(this, realPacket);
             return true;
         }
 
