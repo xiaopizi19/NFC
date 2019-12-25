@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace NFC
+{
+    public class SensitiveWords
+    {
+       
+        public static string SensitiveWord(string strSource, string[] sensitiveWordArray, bool para = true)
+        {
+            List<string> findAy = new List<string>();
+            HashSet<string> lstSenWords = new HashSet<string>();
+            int theLongestNum = 0;
+            int theShortestNum = 10;
+            foreach(var s in sensitiveWordArray)
+            {
+                if (string.IsNullOrEmpty(s) || s.Length < 1)
+                {
+                    continue;
+                }
+                lstSenWords.Add(s);
+                if (s.Length > theLongestNum)
+                {
+                    theLongestNum = s.Length;
+                }
+                if(s.Length < theShortestNum)
+                {
+                    theShortestNum = s.Length;
+                }
+            }
+
+            string strTemp = string.Empty;
+            string _str = string.Empty;
+            int index = 0;
+            while (index < strSource.Length)
+            {
+                bool isSensitive = false;
+                for (int j = theShortestNum; j <= theLongestNum; j++)
+                {
+                    if (index + j > strSource.Length)
+                        break;
+
+                    strTemp = strSource.Substring(index, j);
+                    if (lstSenWords.Contains(strTemp) && !findAy.Contains(strTemp))
+                    {
+                        isSensitive = true;
+                        if (!para)
+                        {
+                            return strTemp;
+                        }
+                    }
+                    if (index + j < strSource.Length && isSensitive)
+                    {
+                        _str += "***";
+                        index = index + j;
+                        break;
+                    }
+                    if (index + j == strSource.Length && isSensitive)
+                    {
+                        _str += "***";
+                        return _str;
+                    }
+                }
+                if (!isSensitive)
+                {
+                    _str += strSource[index];
+                    index++;
+                }
+                    
+            }
+            return _str;
+        }
+    }
+    
+}
